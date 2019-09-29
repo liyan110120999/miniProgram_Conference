@@ -1,0 +1,46 @@
+{
+  "cloud": true,
+  "pages": [
+    "pages/ImgToText/ImgToText",
+    "pages/HandImgToText/HandImgToText",
+    "pages/record/record",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#6CD9AA",
+    "navigationBarTitleText": "拍照转文字",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "black",
+    "selectedColor": "#6CD9AA",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/ImgToText/ImgToText",
+        "text": "通用文字",
+        "iconPath": "pages/static/image/yinshua-up.png",
+        "selectedIconPath": "pages/static/image/yinshua-down.png"
+      },
+      {
+        "pagePath": "pages/HandImgToText/HandImgToText",
+        "text": "手写文字",
+        "iconPath": "pages/static/image/shouxie-up.png",
+        "selectedIconPath": "pages/static/image/shouxie-down.png"
+      },
+      {
+        "pagePath": "pages/record/record",
+        "text": "关于",
+        "iconPath": "pages/static/image/info-up.png",
+        "selectedIconPath": "pages/static/image/info-down.png"
+      }
+    ]
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx18a2ac992306a5a4",
+    "wx79e25b7ce97ad7cb"
+  ],
+  "sitemapLocation": "sitemap.json"
+}

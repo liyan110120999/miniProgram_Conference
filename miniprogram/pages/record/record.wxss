@@ -1,0 +1,54 @@
+.page{
+  background-color: rgb(248, 248, 248);
+  padding-top: 1px;
+}
+.info_view{
+  background-color: #fff;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+  .logo_image{
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+  }
+
+.view_title02{
+  font-size: 16px;
+}
+.view_title03{
+  font-size: 16px;
+  color: #aaa;
+}
+
+.logo_image02{
+  width: 60px;
+  height: 60px;
+  margin-top: 15px;
+  border-radius: 30px;
+}
+
+.view_desc{
+  font-size: 14px;
+  color: #aaa;
+  margin-top: 10px;
+}
+
+
+/* 分享按钮 */
+.shareButton{
+  display:inline-block;
+  margin-top: 10px; margin-left: 10px;margin-right: 10px;
+  width: 30%;
+  height: 36px;
+  line-height: 32px;
+  color: #6CD9AA;
+  background-color: #fff;
+  border-radius: 20px;
+  border:2px solid #6CD9AA;
+}
+.shareButton::after{
+  border: none;
+}

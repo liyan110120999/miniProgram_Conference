@@ -1,0 +1,32 @@
+<view class='uploadImg_button_view'>
+  <button class="uploadImg_button" hover-class='button-hover' bindtap="uploadImg">上传图片 / 拍照</button>
+  <view>
+    <text class="info_text">通用文字识别</text>
+  </view>
+  <!-- 分享按钮 -->
+  <view class='share_view'>
+    <button open-type='share'>
+      <span class='shareIcon iconfont icon-share-hole'></span>
+    </button>
+  </view>
+</view>
+
+<text class="out_text" selectable="true">{{text}}</text>
+
+
+
+<view style='text-align:center;'>
+  <button class="copyTBL" hover-class='button-hover' style="display:{{displayCopyTBL}}" bindtap="copyTBL">一键复制</button>
+</view> 
+
+<!-- 广告 -->
+<!-- <view class="ad_view" style="display:{{displayAD}}"> -->
+<view class="ad_view" style="{{displayAD}}">
+  <ad unit-id="adunit-1f9a187993a74b24"></ad>
+</view>
+
+<!-- 分享转发 -->
+<!-- <view class='share_view'>
+  <!-- <button class="appreciate_button" bindtap="appreciate_button" plain='true'>打赏</button> 
+  <button class="share_button" open-type='share' plain='true'>分享</button>  -->
+<!-- </view> --> 
