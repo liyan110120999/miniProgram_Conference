@@ -115,6 +115,7 @@ async function imgSecCheck(event) {
     return res;
 
   } catch (err) {
+    console.log(err)
     return err;
   }
 }

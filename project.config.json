@@ -3,11 +3,22 @@
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
 		"urlCheck": true,
-		"es6": true,
+		"es6": false,
+		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"enhance": true
+		"coverView": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"appid": "wx6cda482d190728e3",
 	"projectname": "img2text",

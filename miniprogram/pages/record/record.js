@@ -26,6 +26,21 @@ Page({
     })
   },
 
+  // 跳转赞赏
+  appreciate_button: function () {
+    console.log("跳转赞赏")
+    wx.navigateToMiniProgram({
+      appId: 'wx18a2ac992306a5a4',
+      path: 'pages/apps/largess/detail?id=fW9FX%2BE4yLU%3D',
+      extraData: {},
+      envVersion: 'release',
+      success(res) {
+        // 打开成功
+      }
+    })
+
+  },
+
   // 展示视频广告
   showVideoAd:function(){
     videoAd.show()

@@ -12,7 +12,8 @@
         <!-- <view class="view_desc">感谢大家的优化建议，我们将持续完善，如有更多建议可在下方反馈。</view> -->
         <view class="view_desc">分享是最好的支持</view>
 
-        <button class='shareButton' bindtap='showVideoAd'>看视频</button>
+        <button class="shareButton" bindtap="appreciate_button">赞赏</button> 
+        <!-- <button class='shareButton' bindtap='showVideoAd'>看视频</button> -->
         <button class='shareButton' open-type='share'> 分享</button>
     </view>
 
