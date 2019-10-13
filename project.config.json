@@ -22,7 +22,7 @@
 	},
 	"appid": "wx6cda482d190728e3",
 	"projectname": "img2text",
-	"libVersion": "2.8.1",
+	"libVersion": "2.8.3",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",

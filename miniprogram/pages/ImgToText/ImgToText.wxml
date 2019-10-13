@@ -1,5 +1,6 @@
 <view class='uploadImg_button_view'>
   <button class="uploadImg_button" hover-class='button-hover' bindtap="uploadImg">上传图片 / 拍照</button>
+  <button class="uploadImg_button" hover-class='button-hover' bindtap="chooseCamera02">test</button>
   <view>
     <text class="info_text">通用文字识别</text>
   </view>
