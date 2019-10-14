@@ -10,13 +10,13 @@ Page({
     // displayCopyTBL: 'inline-block'
   },
 
+  // 入口选项
   uploadImg: function () {
     var that = this;
     // 选项
     wx.showActionSheet({
-      itemList: ['相机', '相册选择', '微信聊天'],
+      itemList: ['相机','相册选择','微信聊天'],
       success(res) {
-        // console.log(res.tapIndex)
         // 选择相机
         if (res.tapIndex == 0) { that.chooseCamera(); }
         // 选择图库
@@ -26,8 +26,6 @@ Page({
       },
       fail(res) {
         console.log(res.errMsg)
-        // 错误监控
-        wx.reportMonitor('0', res.errMsg)
       }
     })
   },
@@ -37,13 +35,12 @@ Page({
 // promise测试 选择照相机
   chooseCamera02: function () {
 
-    // this.wx_chooseImage.then(this.test02)
     Promise.resolve()
       .then(this.wx_chooseImage)
       .then(this.test02);
   },
 
-  // 子程序
+  // 微信选择图片
   wx_chooseImage: function () {
     return new Promise((resolve, reject) => {
       var util_wx_chooseImage = util.wxPromisify(wx.chooseImage)
@@ -53,13 +50,34 @@ Page({
       }).then(function (res) {
         console.log("then:res::")
         console.log(res)
-        resolve(res);
+        // 赋值
+        that.setData({
+          text: "上传中...",
+          displayCopyTBL: 'none'
+        })
+        // 输出
+        resolve(res.tempFilePaths[0]);
       }).catch(function (res) {
         console.error("catch:res::")
         console.log(res)
       })
     });
   },
+
+  // 图片压缩
+  wx_compressImage:function(){
+    return new Promise((resolve,reject) =>{
+      var util_wx_compressImage = util.wxPromisify(wx.compressImage)
+      util_wx_compressImage({
+        src: tempFilePaths[0], // 图片路径
+        quality: 5, // 压缩质量
+      })
+
+    })
+  },
+
+
+
 
   test02: function (data) {
     return new Promise((resolve, reject) => {
