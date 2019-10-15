@@ -6,9 +6,11 @@ Page({
   data: {
     text:"",
     displayCopyTBL:'none',
-    displayAD: 'display:none'
+    displayAD: 'display:none',
+    imgPath:""
     // displayCopyTBL: 'inline-block'
   },
+
 
   // 入口选项
   uploadImg: function () {
@@ -34,15 +36,21 @@ Page({
 
 // promise测试 选择照相机
   chooseCamera02: function () {
-
+    // var that= this;
     Promise.resolve()
       .then(this.wx_chooseImage)
-      .then(this.test02);
+      .then(this.wx_compressImage)
+      .then(this.wx_getFileSystemManager_readFile)
+      .then(this.wx_cloud_callFunction)
+      .then(this.wx_uploadFile)
+
+      // .then(this.test02)
   },
 
   // 微信选择图片
   wx_chooseImage: function () {
     return new Promise((resolve, reject) => {
+      var that = this;
       var util_wx_chooseImage = util.wxPromisify(wx.chooseImage)
       util_wx_chooseImage({
         count: 1,
@@ -53,31 +61,110 @@ Page({
         // 赋值
         that.setData({
           text: "上传中...",
-          displayCopyTBL: 'none'
+          displayCopyTBL: 'none',
+          imgPath:res.tempFilePaths[0]
         })
         // 输出
         resolve(res.tempFilePaths[0]);
       }).catch(function (res) {
-        console.error("catch:res::")
-        console.log(res)
+        console.error("catch:选择取消")
+        console.error(res)
       })
     });
   },
 
   // 图片压缩
-  wx_compressImage:function(){
+  wx_compressImage: function (tempFilePaths){
     return new Promise((resolve,reject) =>{
       var util_wx_compressImage = util.wxPromisify(wx.compressImage)
       util_wx_compressImage({
-        src: tempFilePaths[0], // 图片路径
+        src: tempFilePaths, // 图片路径
         quality: 5, // 压缩质量
+      }).then(function (res) {
+        console.log(res)
+        console.log(res.tempFilePath)
+        // 输出
+        resolve(res.tempFilePath);
+      }).catch(function (res) {
+        console.error(res)
       })
 
     })
   },
 
+  // 读取图片文件
+  wx_getFileSystemManager_readFile: function (imagePath){
+    return new Promise((resolve, reject) => {
+      var util_wx_FileSystem_readFile = util.wxPromisify(wx.getFileSystemManager().readFile)
+      util_wx_FileSystem_readFile({
+        filePath:imagePath,
+      }).then(function (buffer){
+        console.log(buffer);
+        resolve(buffer.data)
+      }).catch(function (res) { 
+        console.error(res) 
+      })
+    })
+  },
 
+  // 云调用：审核图片
+  wx_cloud_callFunction: function (buffer){
+    return new Promise((resolve, reject)=>{
+      wx.cloud.callFunction({
+        name: 'openapi',
+        data: {
+          action: 'imgSecCheck',
+          value: buffer
+        }
+      }).then(res => {
+        console.log(res)
+        if (res.result.errCode == '87014') {
+          wx.showToast({
+            title: '图片含有违法违规内容',
+            icon: 'none'
+          })
+          // 提示重新上传
+          that.setData({
+            text: "请重新上传图片"
+          })
+          reject()
+        } else {
+          resolve()
+        }
+      }).catch(err => {
+        console.error(err)
+      })
+    })
+  },
 
+  // 上传文件
+  wx_uploadFile:function(){
+    return new Promise((resolve, reject) => {
+      console.log("---进入上传文件步骤---")
+      // 上传图片
+      wx.uploadFile({
+        url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/talent/upload.do', // 仅为示例，非真实的接口地址
+        filePath: tempFilePaths[0],
+        name: 'file',
+        formData: {
+          type: "test/ImgToText/img/"
+        },
+        success(res) {
+          console.log(res);
+          var jsonStringUrl = JSON.parse(res.data).data.url
+          var newjsonStringUrl = "http" + jsonStringUrl.slice(5)
+          console.log(newjsonStringUrl)
+
+          resolve(newjsonStringUrl)
+
+        },fail(res) {
+          console.error(res)
+          wx.reportMonitor('0', res)
+        }
+      })
+
+    })
+  },
 
   test02: function (data) {
     return new Promise((resolve, reject) => {
