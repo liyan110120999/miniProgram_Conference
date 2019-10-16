@@ -17,7 +17,7 @@
 </view>
 
 <!-- 广告 -->
-<view class="ad_view" style="display:{{displayAD}}">
+<view class="ad_view" style="{{displayAD}}">
   <ad unit-id="adunit-160f777db91a915c"></ad>
 </view>
 

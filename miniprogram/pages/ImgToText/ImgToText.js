@@ -33,22 +33,46 @@ Page({
 
   //选择照相机
   chooseCamera: function () {
-    // var that= this;
+
     Promise.resolve()
-      .then(this.wx_chooseImage)
+      .then(this.wx_chooseCamera)
       .then(this.wx_compressImage)
       .then(this.wx_getFileSystemManager_readFile)
       .then(this.wx_cloud_callFunction)
       .then(this.wx_uploadFile)
       .then(this.wx_request_imgToText)
     
-      // .then(this.test02)
   },
-  chooseImage:function(){},
-  chooseMessage:function(){},
+    //选择图库
+  chooseImage:function(){
+
+    Promise.resolve()
+      .then(this.wx_chooseImage_gallery)
+      .then(this.wx_compressImage)
+      .then(this.wx_getFileSystemManager_readFile)
+      .then(this.wx_cloud_callFunction)
+      .then(this.wx_uploadFile)
+      .then(this.wx_request_imgToText)
+
+  },
+    //选择微信会话
+  chooseMessage:function(){
+
+    Promise.resolve()
+      .then(this.wx_chooseImage_wechat)
+      .then(this.wx_compressImage)
+      .then(this.wx_getFileSystemManager_readFile)
+      .then(this.wx_cloud_callFunction)
+      .then(this.wx_uploadFile)
+      .then(this.wx_request_imgToText)
+
+  },
+
+// ------------子函数----------
+
 
   // 选择图片——相机
-  wx_chooseImage: function () {
+  wx_chooseCamera: function () {
     return new Promise((resolve, reject) => {
       var that = this;
       var util_wx_chooseImage = util.wxPromisify(wx.chooseImage)
@@ -107,10 +131,10 @@ Page({
         that.setData({
           text: "上传中...",
           displayCopyTBL: 'none',
-          imgPath: res.tempFilePaths[0].path
+          imgPath: res.tempFiles[0].path
         })
         // 输出
-        resolve(res.tempFilePaths[0].path);
+        resolve(res.tempFiles[0].path);
       }).catch(function (res) {
         console.error(res)
       })
@@ -154,6 +178,7 @@ Page({
 
   // 云调用：审核图片
   wx_cloud_callFunction: function (buffer){
+    var that = this;
     return new Promise((resolve, reject)=>{
       wx.cloud.callFunction({
         name: 'openapi',
@@ -178,6 +203,11 @@ Page({
         }
       }).catch(err => {
         console.error(err)
+        // 赋值
+        that.setData({
+          text: "图片过大，请编辑剪裁后重新识别！",
+          displayCopyTBL: 'none',
+        })
       })
     })
   },
@@ -230,7 +260,7 @@ Page({
           console.log(TextString.words_result)
           var wordsArrayString = ""
           for (var i = 0; i < TextString.words_result.length; i++) {
-            console.log(TextString.words_result[i].words)
+            // console.log(TextString.words_result[i].words)
             wordsArrayString = wordsArrayString + TextString.words_result[i].words + "\n"
           }
           // 赋值
@@ -241,6 +271,11 @@ Page({
           })
         },fail(res) {
           console.error(res)
+          // 赋值
+          that.setData({
+            text: "图片过大，请编辑剪裁后重新识别！",
+            displayCopyTBL: 'none',
+          })
         }
       })
           
@@ -250,8 +285,7 @@ Page({
 
 
 
-
-
+// ------------旧函数----------
 
   // 选择图库
   chooseImage_old:function(){
@@ -362,7 +396,6 @@ Page({
       }
     })
   },
-
   // 选择微信会话
   chooseMessage_old: function () {
     var that = this;
@@ -475,6 +508,7 @@ Page({
   },
   
 
+
   // 一键复制
   copyTBL:function () {
     var that = this
@@ -503,7 +537,6 @@ Page({
       }
     })
   },
-
 
   /**
    * 生命周期函数--监听页面加载

@@ -1,6 +1,5 @@
 <view class='uploadImg_button_view'>
   <button class="uploadImg_button" hover-class='button-hover' bindtap="uploadImg">上传图片 / 拍照</button>
-  <button class="uploadImg_button" hover-class='button-hover' bindtap="chooseCamera02">test</button>
   <view>
     <text class="info_text">通用文字识别</text>
   </view>
@@ -21,7 +20,6 @@
 </view> 
 
 <!-- 广告 -->
-<!-- <view class="ad_view" style="display:{{displayAD}}"> -->
 <view class="ad_view" style="{{displayAD}}">
   <ad unit-id="adunit-1f9a187993a74b24"></ad>
 </view>
