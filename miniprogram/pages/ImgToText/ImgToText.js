@@ -31,6 +31,8 @@ Page({
     })
   },
 
+  // 使用服务器验证 修改为 1、上传 2、安全检查 3、识别
+
   //选择照相机
   chooseCamera: function () {
 
@@ -142,7 +144,7 @@ Page({
   },
 
 
-  // 图片压缩
+  // 图片压缩-  仅对jpg文件 有效
   wx_compressImage: function (tempFilePaths){
     return new Promise((resolve,reject) =>{
       var util_wx_compressImage = util.wxPromisify(wx.compressImage)
