@@ -78,7 +78,7 @@ Page({
         console.log(res)
         // 赋值
         that.setData({
-          text: "上传中...",
+          text: "识别中...",
           displayCopyTBL: 'none',
           imgPath: res.tempFilePaths[0]
         })
@@ -100,7 +100,7 @@ Page({
         console.log(res)
         // 赋值
         that.setData({
-          text: "上传中...",
+          text: "识别中...",
           displayCopyTBL: 'none',
           imgPath: res.tempFilePaths[0]
         })
@@ -124,7 +124,7 @@ Page({
         console.log(res)
         // 赋值
         that.setData({
-          text: "上传中...",
+          text: "识别中...",
           displayCopyTBL: 'none',
           imgPath: res.tempFiles[0].path
         })
