@@ -37,23 +37,34 @@ Page({
   chooseCamera: function () {
 
     Promise.resolve()
+      // .then(this.wx_chooseCamera)
+      // .then(this.wx_compressImage)
+      // .then(this.wx_getFileSystemManager_readFile)
+      // .then(this.wx_cloud_callFunction)
+      // .then(this.wx_uploadFile)
+      // .then(this.wx_request_imgToText)
       .then(this.wx_chooseCamera)
-      .then(this.wx_compressImage)
-      .then(this.wx_getFileSystemManager_readFile)
-      .then(this.wx_cloud_callFunction)
       .then(this.wx_uploadFile)
+      .then(this.imgSecCheck_server)
       .then(this.wx_request_imgToText)
+
     
   },
     //选择图库
   chooseImage:function(){
 
     Promise.resolve()
+      // .then(this.wx_chooseImage_gallery)
+      // .then(this.wx_compressImage)
+      // .then(this.wx_getFileSystemManager_readFile)
+      // .then(this.wx_cloud_callFunction)
+      // .then(this.wx_uploadFile)
+      // .then(this.wx_request_imgToText)
+
+    // 测试
       .then(this.wx_chooseImage_gallery)
-      .then(this.wx_compressImage)
-      .then(this.wx_getFileSystemManager_readFile)
-      .then(this.wx_cloud_callFunction)
       .then(this.wx_uploadFile)
+      .then(this.imgSecCheck_server)
       .then(this.wx_request_imgToText)
 
   },
@@ -61,11 +72,16 @@ Page({
   chooseMessage:function(){
 
     Promise.resolve()
+      // .then(this.wx_chooseImage_wechat)
+      // .then(this.wx_compressImage)
+      // .then(this.wx_getFileSystemManager_readFile)
+      // .then(this.wx_cloud_callFunction)
+      // .then(this.wx_uploadFile)
+      // .then(this.wx_request_imgToText)
+
       .then(this.wx_chooseImage_wechat)
-      .then(this.wx_compressImage)
-      .then(this.wx_getFileSystemManager_readFile)
-      .then(this.wx_cloud_callFunction)
       .then(this.wx_uploadFile)
+      .then(this.imgSecCheck_server)
       .then(this.wx_request_imgToText)
 
   },
@@ -222,7 +238,7 @@ Page({
       console.log(that.data.imgPath)
       // 上传图片
       wx.uploadFile({
-        url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/talent/upload.do', // 仅为示例，非真实的接口地址
+        url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/talent/upload.do', 
         filePath: that.data.imgPath,
         name: 'file',
         formData: {
@@ -239,7 +255,46 @@ Page({
         }
       })
       console.log("---上传文件结束---")
+    })
+  },
 
+  // 图片审核 服务器版
+  imgSecCheck_server: function (upImgUrl) {
+    var that = this;
+    return new Promise((resolve, reject) => {
+      console.log("---进入图片审核 服务器版步骤---")
+      console.log(that.data.imgPath)
+      // 上传图片
+      wx.request({
+        url: 'https://www.xinxueshuo.top/cs/WechatCommon/imgSecCheck',
+        data: {
+          type: "test",
+          imgUrl: upImgUrl
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },success(res) {
+          console.log(res);
+          console.log(res.data.msg);
+          if(res.data.code==1){
+            resolve(upImgUrl)
+          }else{
+            wx.showToast({
+              title: '图片含有违法违规内容',
+              icon: 'none'
+            })
+            // 提示重新上传
+            that.setData({
+              text: "请重新上传图片"
+            })
+          }
+          
+        }, fail(res) {
+          console.error(res)
+          wx.reportMonitor('0', res)
+        }
+      })
+      console.log("---图片审核结束---")
     })
   },
 
@@ -273,6 +328,7 @@ Page({
           })
         },fail(res) {
           console.error(res)
+          wx.reportMonitor('0', res)
           // 赋值
           that.setData({
             text: "图片过大，请编辑剪裁后重新识别！",
@@ -284,231 +340,6 @@ Page({
     })
   },
 
-
-
-
-// ------------旧函数----------
-
-  // 选择图库
-  chooseImage_old:function(){
-    var that = this;
-    wx.chooseImage({
-      count: 1,
-      success(res) {
-        const tempFilePaths = res.tempFilePaths
-        // 赋值
-        that.setData({
-          text: "上传中...",
-          displayCopyTBL: 'none'
-        })
-
-        // 调用云调用-图片审核
-        wx.getFileSystemManager().readFile({
-          filePath: tempFilePaths[0],
-
-          success: buffer => {
-            console.log(buffer);
-            // 调用云调用
-            wx.cloud.callFunction({
-              name: 'openapi',
-              data: {
-                action: 'imgSecCheck',
-                value: buffer.data
-              }
-
-            }).then(imgRes => {
-              console.log(imgRes);
-              if (imgRes.result.errCode == '87014') {
-                wx.showToast({
-                  title: '图片含有违法违规内容',
-                  icon: 'none'
-                })
-                // 提示重新上传
-                that.setData({
-                  text: "请重新上传图片"
-                })
-
-              } else {
-                //图片正常
-                console.log("图片正常")
-
-                wx.uploadFile({
-                  url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/talent/upload.do', // 仅为示例，非真实的接口地址
-                  filePath: tempFilePaths[0],
-                  name: 'file',
-                  formData: {
-                    type: "test/ImgToText/img/"
-                  },
-                  success(res) {
-                    // 赋值
-                    that.setData({
-                      text: "数据提取中..."
-                    })
-                    console.log(res);
-                    var jsonStringUrl = JSON.parse(res.data).data.url
-                    var newjsonStringUrl = "http" + jsonStringUrl.slice(5)
-                    console.log(newjsonStringUrl)
-                    // 发送请求
-                    wx.request({
-                      url: 'https://www.xinxueshuo.top/cs/ImgToTextC/General_ImgToText',
-                      data: {
-                        link: newjsonStringUrl,
-                      },
-                      header: {
-                        'content-type': 'application/json' // 默认值
-                      },
-                      success(res) {
-                        console.log(res.data.data)
-                        var TextString = JSON.parse(res.data.data)
-                        console.log(TextString.words_result)
-
-                        var wordsArrayString = ""
-                        for (var i = 0; i < TextString.words_result.length; i++) {
-                          console.log(TextString.words_result[i].words)
-                          // 赋值
-                          wordsArrayString = wordsArrayString + TextString.words_result[i].words + "\n"
-                        }
-                        console.log("TextString:" + TextString)
-                        // 赋值
-                        that.setData({
-                          text: wordsArrayString,
-                          displayCopyTBL: 'inline-block',
-                          displayAD: ''
-                        })
-                      },
-                      fail(res) {
-                        wx.reportMonitor('1', res)
-                      }
-                    })
-                  },
-                  fail(res) {
-                    wx.reportMonitor('0', res)
-                  }
-                })
-
-                }
-              }).catch(err => {
-                console.log(err);
-              })
-          }, fail: e => {
-            console.error(e)
-          }
-        })
-
-      }
-    })
-  },
-  // 选择微信会话
-  chooseMessage_old: function () {
-    var that = this;
-    wx.chooseMessageFile({
-      count: 1,
-      type: 'image',
-      success(res) {
-        // console.log(res);
-        console.log("success-res:" + res.tempFiles[0].path);
-        const tempFilePaths = res.tempFiles[0].path
-        // 赋值
-        that.setData({
-          text: "上传中...",
-          displayCopyTBL: 'none'
-        })
-
-        // 调用云调用-图片审核
-        wx.getFileSystemManager().readFile({
-          filePath: tempFilePaths[0],
-
-          success: buffer => {
-            console.log(buffer);
-            // 调用云调用
-            wx.cloud.callFunction({
-              name: 'openapi',
-              data: {
-                action: 'imgSecCheck',
-                value: buffer.data
-              }
-
-            }).then(imgRes => {
-              console.log(imgRes);
-              if (imgRes.result.errCode == '87014') {
-                wx.showToast({
-                  title: '图片含有违法违规内容',
-                  icon: 'none'
-                })
-                // 提示重新上传
-                that.setData({
-                  text: "请重新上传图片"
-                })
-
-              } else {
-                //图片正常
-                console.log("图片正常")
-
-                wx.uploadFile({
-                  url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/talent/upload.do', // 仅为示例，非真实的接口地址
-                  // filePath: tempFilePaths[0],
-                  filePath: tempFilePaths,
-                  name: 'file',
-                  formData: {
-                    type: "test/ImgToText/img/"
-                  },
-                  success(res) {
-                    // 赋值
-                    that.setData({
-                      text: "数据提取中..."
-                    })
-                    console.log(res);
-                    var jsonStringUrl = JSON.parse(res.data).data.url
-                    var newjsonStringUrl = "http" + jsonStringUrl.slice(5)
-                    console.log(newjsonStringUrl)
-                    // 发送请求
-                    wx.request({
-                      url: 'https://www.xinxueshuo.top/cs/ImgToTextC/General_ImgToText',
-                      data: {
-                        link: newjsonStringUrl,
-                      },
-                      header: {
-                        'content-type': 'application/json' // 默认值
-                      },
-                      success(res) {
-                        console.log(res.data.data)
-                        var TextString = JSON.parse(res.data.data)
-                        console.log(TextString.words_result)
-
-                        var wordsArrayString = ""
-                        for (var i = 0; i < TextString.words_result.length; i++) {
-                          console.log(TextString.words_result[i].words)
-                          // 赋值
-                          wordsArrayString = wordsArrayString + TextString.words_result[i].words + "\n"
-                        }
-                        console.log("TextString:" + TextString)
-                        // 赋值
-                        that.setData({
-                          text: wordsArrayString,
-                          displayCopyTBL: 'inline-block',
-                          displayAD: ''
-                        })
-                      },
-                      fail(res) {
-                        wx.reportMonitor('1', res)
-                      }
-                    })
-                  },
-                })
-
-                }
-              }).catch(err => {
-                console.log(err);
-              })
-          }, fail: e => {
-            console.error(e)
-          }
-        })
-
-      }
-    })
-  },
-  
 
 
   // 一键复制
@@ -622,30 +453,7 @@ Page({
     setTimeout(function () {
       wx.hideLoading()
     }, 500)
-
     console.log("tab切换：" + item)
-
-
-    // // 在页面中定义插屏广告
-    // let interstitialAd = null
-    // // 在页面onLoad回调事件中创建插屏广告实例
-    // if (wx.createInterstitialAd) {
-    //   interstitialAd = wx.createInterstitialAd({
-    //     adUnitId: 'adunit-e31ffec08cdc9366'
-    //   })
-    //   interstitialAd.onLoad(() => { })
-    //   interstitialAd.onError((err) => { })
-    //   interstitialAd.onClose(() => { })
-    // }
-    // // 在适合的场景显示插屏广告
-    // if (interstitialAd) {
-    //   interstitialAd.show().catch((err) => {
-    //     console.error(err)
-    //   })
-    // }
-
   },
-
-
 
 })
