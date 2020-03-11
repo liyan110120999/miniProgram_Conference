@@ -238,7 +238,7 @@ Page({
       console.log(that.data.imgPath)
       // 上传图片
       wx.uploadFile({
-        url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/talent/upload.do', 
+        url: util.uploadHost+'/nsi-1.0/manager/talent/upload.do', 
         filePath: that.data.imgPath,
         name: 'file',
         formData: {
@@ -266,7 +266,7 @@ Page({
       console.log(that.data.imgPath)
       // 上传图片
       wx.request({
-        url: 'https://www.xinxueshuo.top/cs/WechatCommon/imgSecCheck',
+        url: util.apiHost+'/cs/WechatCommon/imgSecCheck',
         data: {
           type: "test",
           imgUrl: upImgUrl
@@ -304,7 +304,7 @@ Page({
     return new Promise((resolve, reject) => {
       // 发送请求
       wx.request({
-        url: 'https://www.xinxueshuo.top/cs/ImgToTextC/General_ImgToText',
+        url: util.apiHost+'/cs/ImgToTextC/General_ImgToText',
         data: {
           link: upImgUrl,
         },

@@ -14,6 +14,9 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+var apiHost="https://api.html9.top"
+var uploadHost="https://data.xinxueshuo.cn"
+
 // promise封装微信内置方法
 function wxPromisify(fn) {
   return function (obj = {}) {
@@ -34,5 +37,7 @@ function wxPromisify(fn) {
 
 module.exports = {
   formatTime: formatTime,
-  wxPromisify: wxPromisify
+  wxPromisify: wxPromisify,
+  apiHost:apiHost,
+  uploadHost:uploadHost
 }

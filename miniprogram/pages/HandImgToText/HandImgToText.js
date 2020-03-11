@@ -144,7 +144,7 @@ Page({
       console.log(that.data.imgPath)
       // 上传图片
       wx.uploadFile({
-        url: 'https://data.xinxueshuo.cn/nsi-1.0/manager/talent/upload.do',
+        url: util.uploadHost+'/nsi-1.0/manager/talent/upload.do',
         filePath: that.data.imgPath,
         name: 'file',
         formData: {
@@ -172,7 +172,7 @@ Page({
       console.log(that.data.imgPath)
       // 上传图片
       wx.request({
-        url: 'https://www.xinxueshuo.top/cs/WechatCommon/imgSecCheck',
+        url: util.apiHost+'/cs/WechatCommon/imgSecCheck',
         data: {
           type: "test",
           imgUrl: upImgUrl
@@ -283,7 +283,7 @@ Page({
       console.log(that.data.imgPath)
       // 上传图片
       wx.uploadFile({
-        url: 'https://www.xinxueshuo.top/cs/ImgToTextC/handWriting_ImgToText', // 仅为示例，非真实的接口地址
+        url: util.apiHost+'/cs/ImgToTextC/handWriting_ImgToText', 
         filePath: that.data.imgPath,
         name: 'file',
         formData: {
