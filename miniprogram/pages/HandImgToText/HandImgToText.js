@@ -442,6 +442,29 @@ Page({
     }
   },
 
+     /**
+   * 分享朋友圈
+   */
+  onShareTimeline: function (res) {
+    return {
+      title: '拍照转文字 | 图片识别文字 ',
+      query:'Timeline',
+      // path: 'pages/ImgToText/ImgToText',
+      imageUrl: 'http://nsi.oss-cn-zhangjiakou.aliyuncs.com/test/ImgToText/share/share.jpg',
+      success: function (shareTickets) {
+        console.info(shareTickets + '成功');
+        // 转发成功
+      },
+      fail: function (res) {
+        console.log(res + '失败');
+        // 转发失败
+      },
+      complete: function (res) {
+        // 不管成功失败都会执行
+      }
+    }
+  },
+
   //页面切换 插屏广告
   onTabItemTap(item) {
     console.log("tab切换：" + item)
