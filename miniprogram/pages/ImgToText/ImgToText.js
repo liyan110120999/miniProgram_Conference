@@ -371,6 +371,21 @@ Page({
     })
   },
 
+  // 打开其他小程序
+  openMiniPro_AI:function(){
+    wx.navigateToMiniProgram({
+      appId: 'wx79e25b7ce97ad7cb',
+      path: 'pages/AudioFileRecognition/AudioFileRecognition',
+      extraData: {
+        from: 'img2text'
+      },
+      envVersion: 'release',
+      success(res) {
+        // 打开成功
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

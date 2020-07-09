@@ -11,13 +11,28 @@ Page({
 
   },
 
-// 打开其他小程序
+  // 打开其他小程序
   openMiniPro_AI:function(){
     wx.navigateToMiniProgram({
       appId: 'wx79e25b7ce97ad7cb',
-      path: 'pages/recorder/recorder',
+      path: 'pages/AudioFileRecognition/AudioFileRecognition',
       extraData: {
-        foo: 'bar'
+        from: 'img2text'
+      },
+      envVersion: 'release',
+      success(res) {
+        // 打开成功
+      }
+    })
+  },
+
+  // 打开其他小程序
+  openMiniPro_QR:function(){
+    wx.navigateToMiniProgram({
+      appId: 'wx8b22d5ff5df940bc',
+      path: 'pages/index/index',
+      extraData: {
+        from: 'img2text'
       },
       envVersion: 'release',
       success(res) {

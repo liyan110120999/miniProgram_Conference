@@ -3,32 +3,43 @@
     <view class="info_view">
         <image class='logo_image' src='../static/image/logo.png'></image>
         <view class="view_title">拍照转文字</view>
-        <view class="view_desc">免费、便捷的文字识别小工具，致力于将图片转化为可编辑的文字，解放用户双手。</view>
+        <view class="view_desc">免费、便捷的文字识别小工具，解放用户双手，将图片转化为可编辑的文字。</view>
     </view>
 
     <view class="info_view">
         <view class="view_title">作者留言</view>
-        <view class="view_desc">尽量水平拍摄，文字与背景颜色对比鲜明，识别效果更佳。感谢大家的优化建议，我们将持续完善，如有更多建议可在下方反馈。</view>
-        <!-- <view class="view_desc">感谢大家的优化建议，我们将持续完善，如有更多建议可在下方反馈。</view> -->
+        <view class="view_desc">尽量水平拍摄，文字与背景颜色对比鲜明，识别效果更佳。</view>
         <view class="view_desc">分享是最好的支持</view>
 
-        <button class="shareButton" bindtap="appreciate_button">赞赏</button> 
+        <!-- <button class="shareButton" bindtap="appreciate_button">赞赏</button>  -->
         <!-- <button class='shareButton' bindtap='showVideoAd'>看视频</button> -->
+        <button class="shareButton" open-type="contact">反馈</button> 
         <button class='shareButton' open-type='share'> 分享</button>
     </view>
 
     <!-- 广告 -->
-    <view class="info_view">
+    <!-- <view class="info_view">
       <ad unit-id="adunit-2007781aa363ae0f"></ad>
-    </view>
+    </view> -->
 
     <view class="info_view" bindtap='openMiniPro_AI'>
       <view class="view_title02">作者的其他作品</view>
       <image class='logo_image02' src='../static/image/ai_recorder.png'></image>
       <view class="view_title03">AI录音笔</view>
-      <view class="view_desc">录音转文字，录音识别，超强的语音识别小工具</view>
+      <view class="view_desc">录音文件转文字，录音实时识别，会议录音整理好帮手</view>
     </view>
 
+    <view class="info_view" bindtap='openMiniPro_QR'>
+      <!-- <view class="view_title02">作者的其他作品</view> -->
+      <image class='logo_image02' src='../static/image/QR.jpg'></image>
+      <view class="view_title03">极速二维码</view>
+      <view class="view_desc">生成、解析二维码，生成活码 可统计打开次数</view>
+    </view>
+
+      <!-- 广告 -->
+    <view class="info_view">
+      <ad unit-id="adunit-2007781aa363ae0f"></ad>
+    </view>
 
     <view>
     </view>
