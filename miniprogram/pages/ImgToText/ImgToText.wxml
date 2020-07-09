@@ -35,6 +35,7 @@
   </view>
 
   <view class="left_view"> 
+
     <view class="jump_text_view">
       <text class="tip_text">作者最新作品</text>
       <text class="jump_title_text">AI录音笔</text>
