@@ -53,9 +53,11 @@
 }
 
 .ad_view{
-  background-color: #fff;
-  margin: 20px;
-  padding: 10px;
+  background-color: #f6f6f6;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  /* margin: 20px;
+  padding: 10px; */
   border-radius: 5px;
   text-align: center;
   display: flex;

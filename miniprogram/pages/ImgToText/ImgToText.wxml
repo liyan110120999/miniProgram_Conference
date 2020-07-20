@@ -20,16 +20,16 @@
 </view> 
 
 <!-- 广告 -->
-<!-- <view class="ad_view" style="{{displayAD}}">
+ <view class="ad_view" style="{{displayAD}}">
   <ad unit-id="adunit-1f9a187993a74b24"></ad>
-</view> -->
+</view>
 
 
 <!-- <view class="tip_view">
   <text>作者的最新作品</text>
 </view> -->
 
-<view class="jump_view" style="{{displayAD}}" bindtap="openMiniPro_AI">
+<!-- <view class="jump_view" style="{{displayAD}}" bindtap="openMiniPro_AI">
   <view class="image_view">
     <image src='../static/image/ai_recorder.png'></image>
   </view>
@@ -42,7 +42,7 @@
       <text class="jump_desc_text">录音文件转文字，录音实时识别</text>   
     </view>
   </view>
-</view>
+</view> -->
 
 <!-- <view class="myAD_view" bindtap='openMiniPro_AI'>
   <view class="info_title">作者的其他作品</view>
