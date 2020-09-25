@@ -8,11 +8,9 @@
 
     <view class="info_view">
         <view class="view_title">作者留言</view>
-        <view class="view_desc">尽量水平拍摄，文字与背景颜色对比鲜明，识别效果更佳。</view>
+        <view class="view_desc">尽量水平拍摄，文字与背景颜色对比鲜明，原图上传，识别效果更佳。</view>
         <view class="view_desc">分享是最好的支持</view>
 
-        <!-- <button class="shareButton" bindtap="appreciate_button">赞赏</button>  -->
-        <!-- <button class='shareButton' bindtap='showVideoAd'>看视频</button> -->
         <button class="shareButton" open-type="contact">反馈</button> 
         <button class='shareButton' open-type='share'> 分享</button>
     </view>
@@ -34,6 +32,12 @@
       <image class='logo_image02' src='../static/image/QR.jpg'></image>
       <view class="view_title03">极速二维码</view>
       <view class="view_desc">生成、解析二维码，生成活码 可统计打开次数</view>
+    </view>
+
+    <view class="info_view" bindtap='openMiniPro_WaterMark'>
+      <image class='logo_image02' src='../static/image/WaterMark.png'></image>
+      <view class="view_title03">加水印助手</view>
+      <view class="view_desc">图片添加文字水印，图片加水印，证件照加水印</view>
     </view>
 
       <!-- 广告 -->

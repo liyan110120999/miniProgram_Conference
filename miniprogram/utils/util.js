@@ -15,6 +15,7 @@ const formatNumber = n => {
 }
 
 var apiHost="https://api.html9.top"
+// var apiHost="http://192.168.1.16:81"
 var uploadHost="https://data.xinxueshuo.cn"
 
 // promise封装微信内置方法
@@ -24,11 +25,9 @@ function wxPromisify(fn) {
       obj.success = function (res) {
         resolve(res)
       }
-
       obj.fail = function (res) {
         reject(res)
       }
-
       fn(obj)
     })
   }

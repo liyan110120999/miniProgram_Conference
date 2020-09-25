@@ -1,0 +1,34 @@
+<!--miniprogram/pages/result/result.wxml-->
+<!-- <text>miniprogram/pages/result/result.wxml</text> -->
+<!-- <button>识别结果</button> -->
+<view class="title_view">
+  <view>
+    <text>识别结果</text>
+  </view>
+  <view class="tip_view">
+    <text>提示：可以长按文字，复制部分内容</text>
+  </view>
+</view>
+
+<view class="content_view">
+  <text user-select="true">{{text}}</text>
+</view>
+
+<view class="empty_view">
+</view>
+
+
+<view class="button_view">
+  <button class="buttonItem_view" bindtap="backPage">
+    <text class="buttonIcon iconfont icon--back"></text>
+    <text class="buttonText">返回</text>
+  </button>
+  <button class="buttonItem_view" bindtap="copyContent">
+    <text class="buttonIcon iconfont icon-copy"></text>
+    <text class="buttonText">复制内容</text>
+  </button>
+  <button class="buttonItem_view" open-type="share">
+    <text class="buttonIcon iconfont icon-fenxiang"></text>
+    <text class="buttonText">分享内容</text>
+  </button>
+</view>

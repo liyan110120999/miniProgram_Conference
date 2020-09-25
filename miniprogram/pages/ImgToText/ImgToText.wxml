@@ -1,58 +1,17 @@
-<view class='uploadImg_button_view'>
+<view></view>
+<view class="banner_view">
+  <image src="../static/image/banner.png" mode="widthFix"></image>
+</view>
+
+<view class="button_view">
   <button class="uploadImg_button" hover-class='button-hover' bindtap="uploadImg">上传图片 / 拍照</button>
-  <view>
-    <text class="info_text">通用文字识别</text>
-  </view>
-  <!-- 分享按钮 -->
-  <view class='share_view'>
-    <button open-type='share'>
-      <span class='shareIcon iconfont icon-share-hole'></span>
-    </button>
-  </view>
+</view>
+<view class="share_view">
+  <button open-type="share" hover-class="share_button_hover">
+    <text class="iconfont icon-fenxiang"></text>
+    <text> 推荐给好友</text>
+  </button>
 </view>
 
-<text class="out_text" selectable="true">{{text}}</text>
+<text class="out_text">{{text}}</text>
 
-
-
-<view style='text-align:center;'>
-  <button class="copyTBL" hover-class='button-hover' style="display:{{displayCopyTBL}}" bindtap="copyTBL">一键复制</button>
-</view> 
-
-<!-- 广告 -->
- <view class="ad_view" style="{{displayAD}}">
-  <ad unit-id="adunit-1f9a187993a74b24"></ad>
-</view>
-
-
-<!-- <view class="tip_view">
-  <text>作者的最新作品</text>
-</view> -->
-
-<!-- <view class="jump_view" style="{{displayAD}}" bindtap="openMiniPro_AI">
-  <view class="image_view">
-    <image src='../static/image/ai_recorder.png'></image>
-  </view>
-
-  <view class="left_view"> 
-
-    <view class="jump_text_view">
-      <text class="tip_text">作者最新作品</text>
-      <text class="jump_title_text">AI录音笔</text>
-      <text class="jump_desc_text">录音文件转文字，录音实时识别</text>   
-    </view>
-  </view>
-</view> -->
-
-<!-- <view class="myAD_view" bindtap='openMiniPro_AI'>
-  <view class="info_title">作者的其他作品</view>
-  <image class='logo_image02' src='../static/image/ai_recorder.png'></image> -->
-  <!-- <view class="view_title03">AI录音笔</view> -->
-  <!-- <view class="view_desc">录音文件转文字，录音实时识别，会议录音整理好帮手</view>
-</view> -->
-
-<!-- 分享转发 -->
-<!-- <view class='share_view'>
-  <button class="appreciate_button" bindtap="appreciate_button" plain='true'>打赏</button> 
-  <button class="share_button" open-type='share' plain='true'>分享</button>  -->
-<!-- </view> --> 

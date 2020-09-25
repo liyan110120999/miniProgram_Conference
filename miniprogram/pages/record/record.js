@@ -41,6 +41,22 @@ Page({
     })
   },
 
+  
+  // 打开其他小程序
+  openMiniPro_WaterMark:function(){
+    wx.navigateToMiniProgram({
+      appId: 'wx14e79d94ff818c64',
+      path: 'pages/templateList/templateList',
+      extraData: {
+        from: 'img2text'
+      },
+      envVersion: 'release',
+      success(res) {
+        // 打开成功
+      }
+    })
+  },
+
   // 跳转赞赏
   appreciate_button: function () {
     console.log("跳转赞赏")
