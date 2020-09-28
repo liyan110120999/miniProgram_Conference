@@ -52,7 +52,7 @@ Page({
   // 对象存储裁剪版本
   req_imgToText_cut:function(upImgUrl){
     var that =this;
-    let cutOpt="?x-oss-process=image/resize,h_400,m_lfit";
+    let cutOpt="?x-oss-process=image/resize,h_1000,m_lfit";
     wx.request({
       url: util.apiHost+'/cs/ImgToTextC/General_ImgToText',
       data: {
