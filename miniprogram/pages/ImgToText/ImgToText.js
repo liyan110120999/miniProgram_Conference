@@ -65,7 +65,7 @@ Page({
       var util_wx_chooseImage = util.wxPromisify(wx.chooseImage)
       util_wx_chooseImage({
         count: 1,
-        sizeType:['original'],
+        sizeType:['original','compressed'],
         sourceType: ['camera'],
       }).then(function (res) {
         console.log(res)
@@ -82,6 +82,7 @@ Page({
       })
     });
   },
+
   // 选择图片——图库
   wx_chooseImage_gallery: function () {
     return new Promise((resolve, reject) => {
@@ -89,7 +90,7 @@ Page({
       var util_wx_chooseImage = util.wxPromisify(wx.chooseImage)
       util_wx_chooseImage({
         count: 1,
-        sizeType:['original'],
+        sizeType:['original','compressed'],
       }).then(function (res) {
         console.log(res)
         // 赋值
@@ -105,6 +106,7 @@ Page({
       })
     });
   },
+  
   // 选择图片——微信会话
   wx_chooseImage_wechat: function () {
     return new Promise((resolve, reject) => {
@@ -130,6 +132,9 @@ Page({
     });
   },
 
+
+
+  
   // 图片上传oss
   upImgOss:function(){
     var that=this;
@@ -191,6 +196,7 @@ Page({
     // 图片审核 服务器版
     imgSecCheck_server: function (upImgUrl) {
       var that = this;
+      // let cutOpt="?x-oss-process=image/resize,h_1000,m_lfit";
       // 上传图片
       wx.request({
         url: api.imgSecCheck,
