@@ -41,8 +41,9 @@
 .shareButton{
   display:inline-block;
   margin-top: 10px; margin-left: 10px;margin-right: 10px;
-  height: 36px;
-  line-height: 20px;
+  width: 120px !important;
+  /* height: 36px; */
+  /* line-height: 36px; */
   color: #6CD9AA;
   background-color: #fff;
   border-radius: 20px;

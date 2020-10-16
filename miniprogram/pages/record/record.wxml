@@ -11,8 +11,8 @@
         <view class="view_desc">尽量水平拍摄，文字与背景颜色对比鲜明，原图上传，识别效果更佳。</view>
         <view class="view_desc">分享是最好的支持</view>
 
-        <button class="shareButton" open-type="contact">反馈</button> 
-        <button class='shareButton' open-type='share'> 分享</button>
+        <button class="shareButton" size="mini" open-type="contact">反馈</button> 
+        <button class="shareButton" size="mini" open-type='share'> 分享</button>
     </view>
 
     <!-- 广告 -->
